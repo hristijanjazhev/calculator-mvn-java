@@ -1,0 +1,8 @@
+package mk.com.iwec.e_library.interfaces;
+
+import mk.com.iwec.e_library.Book;
+
+public interface IBook {
+	Book findById(int id);
+	void insert();
+}

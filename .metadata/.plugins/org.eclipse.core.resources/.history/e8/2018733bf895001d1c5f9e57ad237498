@@ -1,0 +1,99 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Date;
+import java.sql.SQLException;
+
+public class Books {
+
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+	public int getPublisherId() {
+		return publisherId;
+	}
+	public void setPublisherId(int publisherId) {
+		this.publisherId = publisherId;
+	}
+	public int getIssueNumber() {
+		return issueNumber;
+	}
+	public void setIssueNumber(int issueNumber) {
+		this.issueNumber = issueNumber;
+	}
+	public Date getYearOfRelease() {
+		return yearOfRelease;
+	}
+	public void setYearOfRelease(Date yearOfRelease) {
+		this.yearOfRelease = yearOfRelease;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	public int getFormats_id() {
+		return formats_id;
+	}
+	public int setFormats_id(int formats_id) {
+		return this.formats_id = formats_id;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+	public Books() {
+		super();
+	}
+	private int id;
+    public Books(int id, String title, int authorId, int publisherId, int issueNumber, Date yearOfRelease, String isbn,
+			String genre, int formats_id, String cover) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.authorId = authorId;
+		this.publisherId = publisherId;
+		this.issueNumber = issueNumber;
+		this.yearOfRelease = yearOfRelease;
+		this.isbn = isbn;
+		this.genre = genre;
+		this.formats_id = formats_id;
+		this.cover = cover;
+	}
+	private String title;
+    private int authorId;
+    private int publisherId;
+    private int issueNumber;
+    private Date yearOfRelease;
+    private String isbn;
+    private String genre;
+    private int formats_id;
+    private String cover;
+	public static void create(String title, int authorId, int publisherId, int issueNumber, String isbn,
+			String genre, int formats_id, String cover) throws SQLException {
+		
+	}
+}

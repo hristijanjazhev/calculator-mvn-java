@@ -1,0 +1,12 @@
+package mk.com.iwec.e_library.interfaces;
+
+import mk.com.iwec.e_library.Author;
+import mk.com.iwec.e_library.Book;
+import mk.com.iwec.e_library.Publisher;
+
+public interface IPublisher {
+	void getAll();
+	Publisher findById(int id);
+	void insert();
+	void delete(int id);
+}

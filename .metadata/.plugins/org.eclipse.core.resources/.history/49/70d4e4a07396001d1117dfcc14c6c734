@@ -1,0 +1,139 @@
+package mk.com.iwec.e_library.DAO;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+
+import mk.com.iwec.e_library.Books;
+import mk.com.iwec.e_library.databaseConnection.DBConnection;
+import mk.com.iwec.e_library.interfaces.IBook;
+
+public class BookDAO implements IBook {
+	private Connection connection;
+	private static final String INSERT_BOOK = "insert into books(id,title,author_id,publisher_id,issue_number,isbn,year_of_release,cover,formats_id,genre) VALUES"
+			+ "(?,?,?,?,?,?,?,?,?,?);";
+
+	private static final String UPDATE_BOOK = "UPDATE books SET title = ?, genre = ? author_id = ? publisher_id = ? issue_number = ? "
+			+ "isbn = ? year_of_release = ? cover = ? formats_id = ? genre = ? WHERE id = ?";
+
+	private static final String FINDBY_ID = "select id, title, author_id, publisher_id,year_of_release,issue_number,isbn,cover,formats_id,genre from books where id = ?";
+
+	private static final String GET_ALL = "select * from books";
+
+	private static final String DELETE_BOOK = "DELETE FROM books WHERE id = ?";
+
+	DBConnection db = new DBConnection();
+
+	@Override
+	public int insertBook(Books book) {
+		int rows = 0;
+		try {
+			PreparedStatement ps = db.getConnection().prepareStatement(INSERT_BOOK);
+			ps.setInt(1, book.getId());
+			ps.setString(2, book.getTitle());
+			ps.setInt(3, book.getAuthor_id());
+			ps.setInt(4, book.getPublisher_id());
+			ps.setString(5, book.getIssue_number());
+			ps.setString(6, book.getIsbn());
+			ps.setDate(7, book.getYear_of_release());
+			ps.setString(8, book.getCover());
+			ps.setInt(9, book.getFormats_id());
+			ps.setString(10, book.getGenre());
+
+			rows = ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+
+	}
+
+	@Override
+	public int deleteBook(int id) {
+		int rows = 0;
+		PreparedStatement statement;
+		try {
+			statement = db.getConnection().prepareStatement(DELETE_BOOK);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rows;
+	}
+
+	@Override
+	public Books findById(int id) {
+		try (PreparedStatement statement = db.getConnection().prepareStatement(FINDBY_ID)) {
+			statement.setInt(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				int id1 = resultSet.getInt("id");
+				String title = resultSet.getString("title");
+				int author = resultSet.getInt("author_id");
+				int publisher = resultSet.getInt("publisher_id");
+				Date year_of_release = resultSet.getDate("year_of_release");
+				String issue_number = resultSet.getString("issue_number");
+				String isbn = resultSet.getString("isbn");
+				String cover = resultSet.getString("cover");
+				int formats = resultSet.getInt("formats_id");
+				String genre = resultSet.getString("genre");
+				return new Books(id1, title, issue_number, year_of_release, isbn, author, publisher, cover, formats,
+						genre);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+	@Override
+	public int updateBook(Books book) {
+		PreparedStatement statement;
+		int rows = 0;
+		try {
+			statement = db.getConnection().prepareStatement(UPDATE_BOOK);
+			statement.setInt(1, book.getId();
+			statement.setString(2, book.getTitle());
+			statement.setString(3, book.getIssue_number());
+			statement.setDate(4, book.getYear_of_release());
+			statement.setString(5, book.getIsbn());
+			statement.setInt(6,book.getAuthor_id());
+			statement.setInt(7, book.getPublisher_id());
+			);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return rows;
+
+	}
+
+	@Override
+	public List<Books> findAll() {
+		List<Books> getBooks = new LinkedList<>();
+		try {
+			Statement st = db.getConnection().createStatement();
+			ResultSet rs = st.executeQuery(GET_ALL);
+			{
+				while (rs.next()) {
+					getBooks.add(new Books(rs.getInt("id"), rs.getString("title"), rs.getString("issue_number"),
+							rs.getDate("year_of_release"), rs.getString("isbn"), rs.getInt("author_id"),
+							rs.getInt("publisher_id"), rs.getString("cover"), rs.getInt("formats_id"),
+							rs.getString("cover")));
+				}
+			}
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+		return getBooks;
+	}
+
+}

@@ -1,0 +1,94 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DbConnection {
+
+	Connection con;
+	ResultSet rs;
+
+	private String url = "jdbc:postgresql://localhost/e-library";
+	private String username = "postgres";
+	private String password = "0110";
+
+	DbConnection() {
+		try (Connection connection = DriverManager.getConnection(url, username, password);) {
+			if (connection != null) {
+				System.out.println("Connected to postgreSQL!");
+			} else {
+				System.out.println("Failed to connect!");
+			}
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("SELECT VERSION() ");
+			if (resultSet.next()) {
+				System.out.println(resultSet.getString(1));
+			}
+			System.out.println("Connection established...");
+		} catch (Exception ex) {
+			ex.getMessage();
+		}
+	}
+
+	public void insert() {
+		String insertQuery = "insert into books(id,title,author_id,publisher_id,issue_number,isbn,year_of_release,cover,formats_id,genre)VALUES(?,?,?,?,?,?,?,?,?,?);";
+
+		try {
+			Statement st = con.createStatement();
+			ResultSet rs = st.executeQuery(insertQuery);
+			while (rs.next()) {
+				System.out.print("Column 1 returned ");
+				System.out.println(rs.getString(1));
+			}
+
+			PreparedStatement ps = con.prepareStatement(insertQuery);
+
+			ps.setInt(3, 1);
+			ps.setString(2, "HomeAlone");
+			ps.setInt(3, 3);
+			ps.setInt(4, 3);
+			ps.setInt(5, 0003);
+			ps.setDate(6, new Date(336614400000L));
+			ps.setString(7, "A1668POIUYHNM");
+			ps.setString(8, "Akcija");
+			ps.setInt(9, 1);
+			ps.setString(10, "Crna");
+
+			ps.executeUpdate();
+			st.close();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			rs.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
+
+	public void display() {
+		try {
+
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM books");
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void close() throws Exception {
+		con.close();
+		System.out.println("Connection closed!");
+	}
+}

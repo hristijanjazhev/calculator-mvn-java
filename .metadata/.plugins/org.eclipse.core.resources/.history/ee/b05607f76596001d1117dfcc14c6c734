@@ -1,0 +1,25 @@
+package mk.com.iwec.e_library;
+
+public class Isbn {
+
+public int getId() {
+	return Id;
+}
+public void setId(int id) {
+	Id = id;
+}
+public char getISBN() {
+	return ISBN;
+}
+public void setISBN(char iSBN) {
+	ISBN = iSBN;
+}
+
+public Isbn(int id, char iSBN) {
+	super();
+	Id = id;
+	ISBN = iSBN;
+}
+private int Id;
+private char ISBN;
+}

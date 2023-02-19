@@ -1,0 +1,6 @@
+package mk.com.iwec.e_library;
+
+public class Formats {
+	private int id;
+	private String name;
+}

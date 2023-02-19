@@ -1,0 +1,29 @@
+package mk.com.iwec.elibrary.DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import mk.com.iwec.elibrary.Books;
+import mk.com.iwec.elibrary.interfaces.IBook;
+
+public class BooksDAO extends Books implements IBook {
+	private static final String INSERT_BOOK = "INSERT INTO authors" + "  (id,name) VALUES" + "(?,?);";
+
+	public void insertRecord() {
+		System.out.println(INSERT_BOOK);
+		// establish connection
+		try (Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/e-library", "postgres",
+				"0110"); PreparedStatement ps = conn.prepareStatement(INSERT_BOOK)) {
+			ps.setInt(1, 6);
+			ps.setString(2, "Bob Dylan");
+			System.out.println(ps);
+
+			int result = ps.executeUpdate();
+			System.out.println(result);
+		} catch (SQLException ex) {
+			ex.getMessage();
+		}
+	}
+}

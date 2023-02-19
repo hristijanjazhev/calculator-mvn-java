@@ -1,0 +1,67 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Date;
+
+public class Books {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+	public int getPublisherId() {
+		return publisherId;
+	}
+	public void setPublisherId(int publisherId) {
+		this.publisherId = publisherId;
+	}
+	public int getIssueNumber() {
+		return issueNumber;
+	}
+	public void setIssueNumber(int issueNumber) {
+		this.issueNumber = issueNumber;
+	}
+	public Date getYearOfRelease() {
+		return yearOfRelease;
+	}
+	public void setYearOfRelease(Date yearOfRelease) {
+		this.yearOfRelease = yearOfRelease;
+	}
+	public String getIsbn() {
+		return isbn;
+	}
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+	public Books(int id, String title, int authorId, int publisherId, int issueNumber, Date yearOfRelease,
+			String isbn) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.authorId = authorId;
+		this.publisherId = publisherId;
+		this.issueNumber = issueNumber;
+		this.yearOfRelease = yearOfRelease;
+		this.isbn = isbn;
+	}
+	private int id;
+    private String title;
+    private int authorId;
+    private int publisherId;
+    private int issueNumber;
+    private Date yearOfRelease;
+    private String isbn;
+
+}

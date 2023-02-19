@@ -1,0 +1,4 @@
+mk\com\iwec\calculator\service\interfaces\IArithmeticService.class
+mk\com\iwec\calculator\main\Main.class
+mk\com\iwec\calculator\service\ArithmeticService.class
+mk\com\iwec\calculator\models\Arithmetic.class

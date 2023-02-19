@@ -1,0 +1,58 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+public class Main {
+	private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+
+	public static void main(String[] args) {
+		Sting d = '1970-02-02';
+		Connection connection = null;
+		try {
+			connection = DriverManager.getConnection(url, user, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		BookDAO bookDao = new BookDAO(connection);
+		AuthorDAO authorDao = new AuthorDAO(connection);
+		PublisherDAO publisherDao = new PublisherDAO(connection);
+
+		// add new author
+		Author author = new Author();
+		author.setName("J.K. Rowling");
+		authorDao.insert(author);
+
+		// add new publisher
+		Publisher publisher = new Publisher();
+		publisher.setName("Bloomsbury Publishing");
+		publisherDao.addPublisher(publisher);
+
+		// add new book
+		Book book = new Book();
+		book.setTitle("Harry Potter and the Philosopher's Stone");
+		book.setIssueNumber(1);
+		book.setYearOfRelease(Date.parse(d));
+		book.setISBN("9780747532699");
+		book.setAuthor(author);
+		book.setPublisher(publisher);
+		bookDao.insert();
+//    
+//    //get by {id}
+		Book retrievedBook = bookDao.findById(2);
+		System.out.println("Retrieved book: " + retrievedBook);
+
+////    //update book
+		book.setTitle("Harry Potter and the Sorcerer's Stone");
+		bookDao.update(book);
+////
+////    //delete
+		bookDao.delete(1);
+	}
+}

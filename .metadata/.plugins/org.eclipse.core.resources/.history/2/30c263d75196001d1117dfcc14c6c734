@@ -1,0 +1,10 @@
+package mk.com.iwec.elibrary;
+
+public class Main {
+	private static Connection conn;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

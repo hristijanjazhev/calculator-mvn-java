@@ -1,0 +1,50 @@
+package mk.com.iwec.e_library;
+
+import mk.com.iwec.e_library.interfaces.IPublisher;
+
+public class Publisher implements IPublisher{
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private int id;
+	private String name;
+	
+	
+	@Override
+	public void insert(Publisher publisher) {
+		
+	}
+
+	@Override
+	public Publisher findById(int id) {
+		return null;
+	}
+
+	@Override
+	public void getAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

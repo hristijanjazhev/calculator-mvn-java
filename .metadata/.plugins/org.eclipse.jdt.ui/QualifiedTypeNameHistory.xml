@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="mk.com.iwec.e_library.interfaces.IPublisher"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.e_library.interfaces.IBook"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.e_library.interfaces.IAuthor"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.e_library.Book"/>
+    <fullyQualifiedTypeName name="com.sun.jdi.connect.spi.Connection"/>
+    <fullyQualifiedTypeName name="java.util.concurrent.Flow.Publisher"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.elibrary.Books"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.elibrary.interfaces.IBook"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.awt.print.Book"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.LinkedList"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.e_library.databaseConnection.DBConnection"/>
+    <fullyQualifiedTypeName name="java.beans.Statement"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="mk.com.iwec.e_library.DAO.BookDAO"/>
+</qualifiedTypeNameHistroy>

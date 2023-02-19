@@ -1,0 +1,39 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class App {
+private static Connection connection = null;
+public static void insert() {
+	String insertQuery = "insert into books(id,title,author_id,publisher_id,issue_number,isbn,year_of_release,cover,formats_id,genre)VALUES(2,'DesignPatterns',1,1,1,'QWERTYUIOPASD',2020-07-11,'Bela',1,'Akcija');";
+
+	try {
+		PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
+		int rows = preparedStatement.executeUpdate();
+		if (rows > 0) {
+			System.out.println("Record inserted!");
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
+	public static void main(String[] args) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			String dbURL = "jdbc:postgresql://localhost:5432/e-library";
+			String username = "postges";
+			String password = "0110";
+			connection = DriverManager.getConnection(dbURL,username,password);
+			//DbConnection db = new DbConnection();
+			App.insert();
+			System.out.println("succesfully added");
+		}catch(Exception ex) {
+			ex.getMessage();
+		}		
+	}
+	
+}

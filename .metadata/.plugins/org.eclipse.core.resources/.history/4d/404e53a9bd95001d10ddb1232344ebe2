@@ -1,0 +1,5 @@
+package mk.com.iwec.e_library.interfaces;
+
+public interface IAuthor {
+
+}

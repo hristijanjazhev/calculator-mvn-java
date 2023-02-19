@@ -1,0 +1,47 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+
+public class PublisherDAO {
+    private Connection connection;
+
+    public PublisherDAO(Connection connection) {
+        this.connection = connection;
+    }
+
+    public void addPublisher(Publisher publisher) {
+        String sql = "INSERT INTO publisher (name) VALUES (?)";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, publisher.getName());
+        statement.execute();
+    }
+
+    public Publisher getPublisher(int id) throws SQLException {
+        String sql = "SELECT * FROM publisher WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            Publisher publisher = new Publisher();
+            publisher.setId(resultSet.getInt("id"));
+            publisher.setName(resultSet.getString("name"));
+            return publisher;
+        }
+        return null;
+    }
+
+    public void updatePublisher(Publisher publisher) throws SQLException {
+        String sql = "UPDATE publisher SET name = ? WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, publisher.getName());
+        statement.setInt(2, publisher.getId());
+        statement.executeUpdate();
+    }
+
+    public void deletePublisher(int id) throws SQLException {
+        String sql = "DELETE FROM publisher WHERE id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.execute();
+    }
+}

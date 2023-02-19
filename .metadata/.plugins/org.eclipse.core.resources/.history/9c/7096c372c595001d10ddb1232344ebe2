@@ -1,0 +1,26 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+public class DatabaseConnection {
+	private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+	private String connectionEstablished = "Connection Established";
+	
+	Connection con;
+	PreparedStatement preparedStatement;
+
+String DatabaseConnection(){
+	try {
+		Class.forName("org.postgresql.Driver");
+		con= DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","e_library","root");
+	return connectionEstablished;
+	}catch(Exception ex) {}
+}
+public void insert(int code,String cname,int score) throws Exception{
+	preparedStatement = con.prepareStatement("");
+}
+}

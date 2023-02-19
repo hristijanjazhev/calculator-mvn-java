@@ -1,0 +1,22 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class Main {
+	private static Connection conn;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("org.postgresql.Driver");
+			String URL = "jdbc:postgresql://localhost:5432/e-library";
+			String username = "postgres";
+			String password = "0110";
+			DriverManager.getConnection(URL, username, password);
+		} catch (Exception ex) {
+			throw new RuntimeException("Something went wrong!");
+		}
+	}
+
+}

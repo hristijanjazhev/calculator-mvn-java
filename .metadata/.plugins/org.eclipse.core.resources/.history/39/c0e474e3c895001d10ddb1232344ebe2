@@ -1,0 +1,60 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DatabaseConnection extends Book{
+	private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+	private String connectionEstablished = "Connection Established";
+	
+	Connection con;
+	PreparedStatement preparedStatement;
+
+ public String DatabaseConnection(){
+	try {
+		Class.forName("org.postgresql.Driver");
+		con= DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","e_library","root");
+	System.out.println("Connection Established");
+	}catch(Exception ex) {}
+}
+
+ public void insertBook(Book book) throws SQLException {
+     // Insert the author if it doesn't already exist
+     insertAuthor(book.getAuthor());
+
+     // Insert the publisher if it doesn't already exist
+     insertPublisher(book.getPublisher());
+
+     // Insert the issue_number if it doesn't already exist
+     insertIssueNumber(book.getIssue_number());
+
+     // Insert the year_of_release if it doesn't already exist
+     insertYearOfRelease(book.getYear_of_release());
+
+     // Insert the ISBN if it doesn't already exist
+     insertISBN(book.getISBN());
+
+     // Insert the genre if it doesn't already exist
+     insertGenre(book.getGenreId());
+
+     // Insert the book
+     String sql = "INSERT INTO book (title, author_id, publisher_id, issue_number_id, year_of_release_id, isbn_id, genre_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+     try (Connection conn = DriverManager.getConnection(url, user, password);
+          PreparedStatement pstmt = conn.prepareStatement(sql)) {
+         pstmt.setString(1, book.getTitle());
+         pstmt.setInt(2, book.getAuthorId());
+         pstmt.setInt(3, book.getPublisherId());
+         pstmt.setInt(4, book.getIssueNumber());
+         pstmt.setInt(5, book.getYearOfRelease());
+         pstmt.setString(6, book.getISBN());
+         pstmt.setInt(7, book.getGenreId());
+         pstmt.executeUpdate();
+     }
+ }
+}

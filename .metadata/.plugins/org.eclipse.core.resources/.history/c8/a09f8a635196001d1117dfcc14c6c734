@@ -1,0 +1,69 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Date;
+
+public class Books {
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public int getAuthro_id() {
+		return authro_id;
+	}
+	public void setAuthro_id(int authro_id) {
+		this.authro_id = authro_id;
+	}
+	public int getPublisher_id() {
+		return publisher_id;
+	}
+	public void setPublisher_id(int publisher_id) {
+		this.publisher_id = publisher_id;
+	}
+	public int getIssue_number() {
+		return issue_number;
+	}
+	public void setIssue_number(int issue_number) {
+		this.issue_number = issue_number;
+	}
+	public Date getYear_of_release() {
+		return year_of_release;
+	}
+	public void setYear_of_release(Date year_of_release) {
+		this.year_of_release = year_of_release;
+	}
+	public String getCover() {
+		return cover;
+	}
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+	public int getFormats_id() {
+		return formats_id;
+	}
+	public void setFormats_id(int formats_id) {
+		this.formats_id = formats_id;
+	}
+	public String getGenre() {
+		return genre;
+	}
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+	private int id;
+	private String title;
+	private int authro_id;
+	private int publisher_id;
+	private int issue_number;
+	private Date year_of_release;
+	private String cover;
+	private int formats_id;
+	private String genre;
+}

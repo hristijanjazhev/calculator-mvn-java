@@ -1,0 +1,44 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DatabaseConnection extends Book{
+	private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+	private String connectionEstablished = "Connection Established";
+	
+	Connection con;
+	PreparedStatement preparedStatement;
+
+ public String DatabaseConnection(){
+	try {
+		Class.forName("org.postgresql.Driver");
+		con= DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","e_library","root");
+	System.out.println("Connection Established");
+	}catch(Exception ex) {}
+}
+ public void insertBook(Book book) throws SQLException {
+     String sql = "INSERT INTO public.book(\r\n"
+     		+ "id, title, author_id, publisher_id, year_of_release, issue_number, isbn, cover, genre)\r\n"
+     		+ "	VALUES (1, 'Clean code', 1, 1, '2017-03-14', 1,'BEQWETYFAXCTY', 'Lilava', 1);";
+     PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+     statement.setString(1, book.getTitle());
+     statement.setInt(2, book.getAuthor()));
+     statement.setInt(3, book.getPublisher());
+     statement.setInt(4, book.getIssue_number());
+     statement.setInt(5, book.getYear_of_release());
+     statement.setString(6, book.getIsbn());
+     statement.setInt(7, book.getGenre());
+     statement.executeUpdate();
+     ResultSet keys = statement.getGeneratedKeys();
+     if (keys.next()) {
+         book.setId(keys.getInt(1));
+     }
+ }
+}

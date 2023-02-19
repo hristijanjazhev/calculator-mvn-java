@@ -1,0 +1,75 @@
+package mk.com.iwec.e_library;
+
+import java.sql.SQLException;
+
+import mk.com.iwec.e_library.interfaces.IAuthor;
+
+public class Author implements IAuthor{
+
+public Author(int id, String name, String email) {
+	super();
+	Id = id;
+	this.name = name;
+	this.email = email;
+}
+
+public int getId() {
+	return Id;
+}
+public void setId(int id) {
+	Id = id;
+}
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
+public String getEmail() {
+	return email;
+}
+public void setEmail(String email) {
+	this.email = email;
+}
+private int Id;
+private String name;
+private String email;
+@Override
+public void getAll() {
+	// TODO Auto-generated method stub
+	
+}
+@Override
+public void insert(Author author) {
+//	 {
+//	    String sql = "INSERT INTO book (isbn, title, author, publisher, year_of_release, issue_number) VALUES (?,?,?,?,?,?)";
+//	    try (Connection connection = getConnection();
+//	         PreparedStatement statement = connection.prepareStatement(sql)) {
+//	        statement.setString(1, book.getIsbn());
+//	        statement.setString(2, book.getTitle());
+//	        statement.setString(3, book.getAuthor());
+//	        statement.setString(4, book.getPublisher());
+//	        statement.setInt(5, book.getYearOfRelease());
+//	        statement.setInt(6, book.getIssueNumber());
+//	        statement.executeUpdate();
+//	    }
+//	}
+//	
+}
+
+@Override
+public void delete(int id) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public Author findById(int id) {
+	// TODO Auto-generated method stub
+	return null;
+}
+
+
+
+
+}

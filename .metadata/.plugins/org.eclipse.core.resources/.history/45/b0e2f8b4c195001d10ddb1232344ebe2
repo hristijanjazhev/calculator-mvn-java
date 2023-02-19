@@ -1,0 +1,17 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+
+public class DatabaseConnection {
+	private static final String url = "jdbc:postgresql://localhost/dvdrental";
+	private static final String user = "postgres";
+	private static final String password = "<add your password>";
+	Connection con;
+
+DatabaseConnection(){
+	try {
+		Class.forName("org.postgresql.Driver");
+		con= DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","e_library","root");
+	}
+}
+}

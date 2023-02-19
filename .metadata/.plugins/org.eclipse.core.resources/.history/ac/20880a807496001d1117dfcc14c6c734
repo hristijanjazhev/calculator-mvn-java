@@ -1,0 +1,139 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Objects;
+
+import mk.com.iwec.e_library.interfaces.IBook;
+
+public class Books {
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public Date getYear_of_release() {
+		return year_of_release;
+	}
+
+	public void setYear_of_release(Date year_of_release) {
+		this.year_of_release = year_of_release;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public Authors getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(Authors authors) {
+		this.authors = authors;
+	}
+
+	public int getAuthor_id() {
+		return author_id;
+	}
+
+	public void setAuthor_id(int author_id) {
+		this.author_id = author_id;
+	}
+
+	public Publishers getPublishers() {
+		return publishers;
+	}
+
+	public void setPublishers(Publishers publishers) {
+		this.publishers = publishers;
+	}
+
+	public int getPublisher_id() {
+		return publisher_id;
+	}
+
+	public void setPublisher_id(int publisher_id) {
+		this.publisher_id = publisher_id;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public int getFormats_id() {
+		return formats_id;
+	}
+
+	public void setFormats_id(int formats_id) {
+		this.formats_id = formats_id;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public String getIssue_number() {
+		return issue_number;
+	}
+
+	public void setIssue_number(String issue_number) {
+		this.issue_number = issue_number;
+	}
+
+	public Books(int id, String title, String issue_number, Date year_of_release, String isbn, int author_id,
+			int publisher_id, String cover, int formats_id, String genre) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.issue_number = issue_number;
+		this.year_of_release = year_of_release;
+		this.isbn = isbn;
+		this.author_id = author_id;
+		this.publisher_id = publisher_id;
+		this.cover = cover;
+		this.formats_id = formats_id;
+		this.genre = genre;
+	}
+
+	private int id;
+	private String title;
+	private String issue_number;
+	private Date year_of_release;
+	private String isbn;
+	private Authors authors;
+	private int author_id;
+	private Publishers publishers;
+	protected int publisher_id;
+	private String cover;
+	private int formats_id;
+	private String genre;
+
+}

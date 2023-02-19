@@ -1,0 +1,49 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DatabaseConnection extends Book{
+	public DatabaseConnection(int id, Author author, Publisher publisher, Date year_of_release, int issue_number,
+			String isbn, String cover, String title, String genre) {
+		super(id, author, publisher, year_of_release, issue_number, isbn, cover, title, genre);
+		// TODO Auto-generated constructor stub
+	}
+	private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+	private String connectionEstablished = "Connection Established";
+	
+	Connection con;
+	PreparedStatement preparedStatement;
+
+	DatabaseConnection(){
+	try {
+		Class.forName("org.postgresql.Driver");
+		con= DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres","e_library","root");
+	System.out.println("Connection Established");
+	}catch(Exception ex) {}
+}
+ public void insertBook(Book book) throws SQLException {
+     String sql = "INSERT INTO public.book(\r\n"
+     		+ "id, title, author_id, publisher_id, year_of_release, issue_number, isbn, cover, genre)\r\n"
+     		+ "	VALUES (1, 'Clean code', 1, 1, '2017-03-14', 1,'BEQWETYFAXCTY', 'Lilava', 1);";
+     PreparedStatement statement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+     statement.setString(1, book.getTitle());
+     statement.setInt(2, book.getAuthorId());
+     statement.setInt(3, book.getPublisherId());
+     statement.setInt(4, book.getIssueNumberId());
+     statement.setInt(5, book.getYearOfReleaseId());
+     statement.setString(6, book.getISBN());
+     statement.setInt(7, book.getGenreId());
+     statement.executeUpdate();
+     ResultSet keys = statement.getGeneratedKeys();
+     if (keys.next()) {
+         book.setId(keys.getInt(1));
+     }
+}

@@ -1,0 +1,26 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Date;
+
+public class Year_Of_Release {
+
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public Date getYear_of_release() {
+	return year_of_release;
+}
+public void setYear_of_release(Date year_of_release) {
+	this.year_of_release = year_of_release;
+}
+private int id;
+public Year_Of_Release(int id, Date year_of_release) {
+	super();
+	this.id = id;
+	this.year_of_release = year_of_release;
+}
+private Date year_of_release;
+}

@@ -1,0 +1,79 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DbConnection {
+
+	Connection con;
+	ResultSet rs;
+
+	private String url = "jdbc:postgresql://localhost/e-library";
+	private String username = "postgres";
+	private String password = "0110";
+
+	DbConnection() {
+		try (Connection connection = DriverManager.getConnection(url, username, password);) {
+			if (connection != null) {
+				System.out.println("Connected to postgreSQL!");
+			} else {
+				System.out.println("Failed to connect!");
+			}
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery("SELECT VERSION() ");
+			if (resultSet.next()) {
+				System.out.println(resultSet.getString(1));
+			}
+			System.out.println("Connection established...");
+		} catch (Exception ex) {
+			ex.getMessage();
+		}
+	}
+
+	public void insert(int id, String title, int author_id, int publisher_id, int issue_number, Date year_of_release,
+			String isbn, String genre, int formats_id, String cover) {
+		String insertQuery = "insert into books(id,title,author_id,publisher_id,issue_number,isbn,year_of_release,cover,formats_id,genre";
+
+		try {
+			PreparedStatement ps = con.prepareStatement(insertQuery);
+
+			ps.setInt(3, id);
+			ps.setString(2, title);
+			ps.setInt(3, author_id);
+			ps.setInt(4, publisher_id);
+			ps.setInt(5, issue_number);
+			ps.setDate(6, year_of_release);
+			ps.setString(7, isbn);
+			ps.setString(8, genre);
+			ps.setInt(9, formats_id);
+			ps.setString(10, cover);
+			ps.executeUpdate();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	public void display() {
+		try {
+
+			PreparedStatement ps = con.prepareStatement("SELECT * FROM books");
+			con.prepareStatement();
+			rs = ps.executeQuery();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void close() throws Exception {
+		con.close();
+		System.out.println("Connection closed!");
+	}
+}

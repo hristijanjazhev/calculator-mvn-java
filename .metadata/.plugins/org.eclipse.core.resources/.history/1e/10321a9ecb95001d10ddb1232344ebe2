@@ -1,0 +1,7 @@
+package mk.com.iwec.e_library.interfaces;
+
+import mk.com.iwec.e_library.Author;
+import mk.com.iwec.e_library.Publisher;
+
+public interface IPublisher<T> {
+}

@@ -1,0 +1,53 @@
+package mk.com.iwec.e_library.databaseConnection;
+
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnection {
+	private Connection conn;
+
+	public DBConnection() {
+		String ip = "127.0.0.1";
+		int port = 5432;
+		String dbName = "edu";
+		String username = "postgres";
+		String password = "postgres";
+		String url = "jdbc:postgresql://" + ip + ':' + port + '/' + dbName;
+
+		try {
+		 try {
+			Class.forName("org.postgresql.Driver").getConstructor().newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Connection getConnection() {
+		return conn;
+	}
+
+	public void close() throws SQLException {
+		if (conn != null) {
+			conn.close();
+		}
+	}
+
+}

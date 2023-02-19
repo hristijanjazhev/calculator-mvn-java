@@ -1,0 +1,158 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Objects;
+
+import mk.com.iwec.e_library.interfaces.IBook;
+
+public class Books {
+	private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+
+	public static Connection getConnection() throws SQLException {
+		return DriverManager.getConnection(url, user, password);
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public int getIssueNumber() {
+		return issueNumber;
+	}
+
+	public void setIssueNumber(int issueNumber) {
+		this.issueNumber = issueNumber;
+	}
+
+	public Date getYearOfRelease() {
+		return yearOfRelease;
+	}
+
+	public void setYearOfRelease(Date yearOfRelease) {
+		this.yearOfRelease = yearOfRelease;
+	}
+
+
+
+	public int getAuthor_id() {
+		return author_id;
+	}
+
+	public void setAuthor_id(int author_id) {
+		this.author_id = author_id;
+	}
+
+
+	public int getPublisher_id() {
+		return publisher_id;
+	}
+
+	public void setPublisher_id(int publisher_id) {
+		this.publisher_id = publisher_id;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+
+
+	public Books(int id, String title, int issueNumber, Date yearOfRelease, String isbn, Authors author,
+			Publishers publisher, String cover, String genre) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.issueNumber = issueNumber;
+		this.yearOfRelease = yearOfRelease;
+		this.isbn = isbn;
+		this.authors = authors;
+		this.publishers = publishers;
+		this.cover = cover;
+		this.genre = genre;
+	}
+
+
+
+	public Books() {
+		super();
+	}
+
+
+
+
+
+	private int id;
+	private String title;
+	private int issueNumber;
+	private Date yearOfRelease;
+	private String isbn;
+	private Authors authors;
+	private int author_id;
+	private Publishers publishers;
+	protected int publisher_id;
+	private String cover;
+	private String genre;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(isbn, authors, author_id, cover, genre, id, issueNumber, publishers, publisher_id, title,
+				yearOfRelease);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Books other = (Books) obj;
+		return Objects.equals(isbn, other.isbn) && Objects.equals(authors, other.authors) && author_id == other.author_id
+				&& Objects.equals(cover, other.cover) && Objects.equals(genre, other.genre) && id == other.id
+				&& issueNumber == other.issueNumber && Objects.equals(publishers, other.publishers)
+				&& publisher_id == other.publisher_id && Objects.equals(title, other.title)
+				&& Objects.equals(yearOfRelease, other.yearOfRelease);
+	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", issueNumber=" + issueNumber + ", yearOfRelease="
+				+ yearOfRelease + ", ISBN=" + isbn + ", author=" + authors + ", author_id=" + author_id + ", publisher="
+				+ publishers + ", publisher_id=" + publisher_id + ", cover=" + cover + ", genre=" + genre + "]";
+	}
+
+
+	
+}

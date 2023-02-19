@@ -1,0 +1,6 @@
+package mk.com.iwec.e_library;
+
+public class Issue_number {
+private int Id;
+private int issue_number;
+}

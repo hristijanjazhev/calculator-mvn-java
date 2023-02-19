@@ -1,0 +1,79 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class PublisherDAO {
+	private Connection connection;
+
+	public PublisherDAO(Connection connection) {
+		this.connection = connection;
+	}
+
+	public void addPublisher(Publishers publisher) {
+		String sql = "INSERT INTO publisher (name) VALUES (?)";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+
+			statement.setString(1, publisher.getName());
+			statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+	}
+
+	public Publishers getPublisher(int id) {
+        String sql = "SELECT * FROM publisher WHERE id = ?";
+        PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+		
+        statement.setInt(1, id);
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            Publishers publisher = new Publishers();
+            publisher.setId(resultSet.getInt("id"));
+            publisher.setName(resultSet.getString("name"));
+            return publisher;
+        } 
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+        return null;
+
+	}
+
+	public void updatePublisher(Publishers publisher) {
+        String sql = "UPDATE publisher SET name = ? WHERE id = ?";
+        PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+		
+        statement.setString(1, publisher.getName());
+        statement.setInt(2, publisher.getId());
+        statement.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+	public void deletePublisher(int id) {
+		String sql = "DELETE FROM publisher WHERE id = ?";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+		
+		statement.setInt(1, id);
+		statement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

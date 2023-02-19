@@ -1,0 +1,10 @@
+package mk.com.iwec.elibrary.interfaces;
+
+import java.awt.print.Book;
+
+public interface IBook {
+	void createBook(Book book);
+	void readBook(Book book);
+	void updateBook(Book book);
+	void deleteBook(int id);
+}

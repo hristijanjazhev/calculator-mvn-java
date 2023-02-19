@@ -1,0 +1,11 @@
+package mk.com.iwec.e_library.interfaces;
+
+import mk.com.iwec.e_library.Author;
+
+public interface IAuthor {
+	void getAll();
+	void getById(int id);
+	void insert();
+	void update(Author author);
+	Author findById(int id);
+}

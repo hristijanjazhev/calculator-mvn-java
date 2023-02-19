@@ -1,0 +1,12 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.Date;
+
+public class Books {
+	private int Id;
+	private String title;
+	private int authro_id;
+	private int publisher_id;
+	private int issue_number;
+	private Date year_of_release;
+}

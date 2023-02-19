@@ -1,0 +1,80 @@
+package mk.com.iwec.elibrary;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class Main {
+	private static final String url = "jdbc:postgresql://localhost:5432/e-library";
+	private static final String user = "postgres";
+	private static final String password = "0110";
+
+	public static void main(String[] args) {
+		int choice = -1;
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		DbConnection con = new DbConnection();
+		do {
+			System.out.println("1.INSERT");
+			System.out.println("2. DISPLAY ALL");
+			System.out.println("3.EXIT");
+			System.out.println("Enter your choice: ");
+			choice = Integer.parseInt(br.readLine());
+			switch(choice) {
+			case 1:
+				con.insert(2, "ASD", 2, 2, 0002, null, "QWERRTYUIOASD", "Akcija", 1, "CRNA");
+				break;
+			case 3:
+				con.close();
+				System.out.println("BYE");
+				break;
+			}while(choice!=0);
+		con.insert(1, "ASD", 2, 2, 0002, null, "QWERRTYUIOASD", "Akcija", 1, "CRNA");
+		try {
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}}
+//		Connection connection = null;
+//		try {
+//			connection = DriverManager.getConnection(url, user, password);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		BookDAO bookDao = new BookDAO(connection);
+//		Books book = new Books();
+//		book.setId(1);
+//		book.setTitle("Harry Potter and the Philosopher's Stone");
+//		book.setAuthorId(2);
+//		book.setPublisherId(2);
+//		book.setIssueNumber(0002);
+//		book.setIsbn("QWERTYUIOPASD");
+//		book.setYearOfRelease(null);
+//		book.setCover("Crna");
+//		book.setFormats_id(2);
+//		book.setGenre("Akcija,Drama");
+//		// book.setAuthor(author);
+//		// .setPublisher(publisher);
+//		bookDao.createBook(book);
+//	}
+//		try {
+//			BookDAO book = new BookDAO("The Great Gatsby", 2, 2, 0002, "2019-08-11","QWERTYUIOPASDF", "Drama", 2, "Crna");
+//			
+//			//Books.create("The Great Gatsby", 2, 2, 0002, "QWERTYUIOPASDF", "Drama,Akcija,Komedija", 2, "Crna");
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+
+// read a book by id
+//		int Id = 1;
+//	    Books book = Books.
+//	    System.out.println(book.getTitle() + " by " + book.getAuthorId());
+
+// update a book
+//	    cover = null;//retrieve the image
+//	    Book.update(id, "The New Great Gatsby", "F. Scott Fitzgerald", cover);
+
+// delete a book by id
+//	    Books.delete(1);

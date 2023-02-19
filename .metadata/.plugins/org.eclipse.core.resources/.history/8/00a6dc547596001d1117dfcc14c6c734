@@ -1,0 +1,39 @@
+package mk.com.iwec.e_library.databaseConnection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnection implements AutoCloseable {
+	private Connection conn;
+
+	public DBConnection() {
+		String ip = "127.0.0.1";
+		int port = 5432;
+		String dbName = "e-library";
+		String username = "postgres";
+		String password = "0110";
+		String url = "jdbc:postgresql://" + ip + ':' + port + '/' + dbName;
+
+		try {
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Connection getConnection() {
+		return conn;
+	}
+
+	public void close() {
+		if (conn != null) {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.getMessage();
+			}
+		}
+	}
+
+}

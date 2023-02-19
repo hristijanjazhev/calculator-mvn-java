@@ -1,0 +1,74 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import mk.com.iwec.e_library.interfaces.IAuthor;
+
+public class AuthorDAO implements IAuthor {
+	private Connection connection;
+
+	public AuthorDAO(Connection connection) {
+		this.connection = connection;
+	}
+
+	public void insert(Author author) {
+		String sql = "INSERT INTO book"
+				+ "	id, title, author_id, publisher_id, year_of_release, isbn, cover, genre, issue_number)\r\n"
+				+ "	VALUES (2,'DesignPatterns' , 1, 1, '2019-07-13' ,'QWEQWDQSDT', 'Crna',1, 1);";
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, author.getName());
+			statement.execute();
+		} catch (Exception ex) {
+			ex.getMessage();
+		}
+	}
+
+	public Author getAuthor(int id) {
+		String sql = "select * from author where id =1";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				Author author = new Author();
+				author.setId(resultSet.getInt("id"));
+				author.setName(resultSet.getString("name"));
+				author.setEmail(resultSet.getString("email"));
+				return author;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void updateAuthor(Author author) {
+		String sql = "UPDATE author SET name = ? WHERE id = ?";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+
+			statement.setString(1, author.getName());
+			statement.setInt(2, author.getId());
+			statement.setString(3, author.getEmail());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void getAll() {
+
+	}
+
+	@Override
+	public void delete(int id) {
+
+	}
+}

@@ -1,0 +1,5 @@
+package mk.com.iwec.elibrary.interfaces;
+
+public interface IBook {
+	void insertRecord();
+}

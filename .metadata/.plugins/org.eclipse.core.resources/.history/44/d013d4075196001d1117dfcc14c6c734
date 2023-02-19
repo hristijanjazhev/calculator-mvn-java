@@ -1,0 +1,6 @@
+package mk.com.iwec.elibrary;
+
+public class Authors {
+	private int Id;
+	private Strin name;
+}

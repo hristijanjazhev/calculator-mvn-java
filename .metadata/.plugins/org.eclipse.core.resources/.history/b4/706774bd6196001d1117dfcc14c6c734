@@ -1,0 +1,24 @@
+package mk.com.iwec.e_library;
+
+public class Genre {
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	private int Id;
+	public Genre(int id, String name) {
+		super();
+		Id = id;
+		this.name = name;
+	}
+	private String name;
+
+}

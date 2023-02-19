@@ -1,0 +1,36 @@
+package mk.com.iwec.e_library.databaseConnection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnection {
+	private Connection conn;
+
+	public DBConnection() {
+		String ip = "127.0.0.1";
+		int port = 5432;
+		String dbName = "edu";
+		String username = "postgres";
+		String password = "postgres";
+		String url = "jdbc:postgresql://" + ip + ':' + port + '/' + dbName;
+
+		try {
+		 Class.forName("org.postgresql.Driver").getConstructor().newInstance();
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public Connection getConnection() {
+		return conn;
+	}
+
+	public void close() throws SQLException {
+		if (conn != null) {
+			conn.close();
+		}
+	}
+
+}

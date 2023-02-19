@@ -1,0 +1,16 @@
+package mk.com.iwec.e_library.interfaces;
+
+import java.util.List;
+
+import mk.com.iwec.e_library.Authors;
+import mk.com.iwec.e_library.Books;
+
+public interface IBook {
+	Books findById(int id);
+	void insertBook();
+    List<Books> findAll();
+    void createBook(Books book);
+    void updateBook(Books book);
+    void deleteBook(int id);
+	
+}

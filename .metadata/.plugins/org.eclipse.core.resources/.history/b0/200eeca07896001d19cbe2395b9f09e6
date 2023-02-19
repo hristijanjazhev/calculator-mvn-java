@@ -1,0 +1,76 @@
+//authors table
+-- Table: public.authors
+
+-- DROP TABLE IF EXISTS public.authors;
+
+CREATE TABLE IF NOT EXISTS public.authors
+(
+    id integer NOT NULL DEFAULT nextval('authors_id_seq'::regclass),
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT authors_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.authors
+    OWNER to postgres;
+
+//book table
+CREATE TABLE IF NOT EXISTS public.books
+(
+    id integer NOT NULL DEFAULT nextval('books_id_seq'::regclass),
+    title character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    author_id integer NOT NULL,
+    publisher_id integer NOT NULL,
+    issue_number character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    isbn character(20) COLLATE pg_catalog."default" NOT NULL,
+    year_of_release date NOT NULL,
+    cover character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    formats_id integer NOT NULL,
+    genre character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT books_pkey PRIMARY KEY (id),
+    CONSTRAINT books_author_id_fkey FOREIGN KEY (author_id)
+        REFERENCES public.authors (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT books_formats_id_fkey FOREIGN KEY (formats_id)
+        REFERENCES public.formats (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT books_publisher_id_fkey FOREIGN KEY (publisher_id)
+        REFERENCES public.publishers (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.books
+    OWNER to postgres;
+
+//publisher table
+CREATE TABLE IF NOT EXISTS public.publishers
+(
+    id integer NOT NULL DEFAULT nextval('publishers_id_seq'::regclass),
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT publishers_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.publishers
+    OWNER to postgres;
+
+//formats table
+
+CREATE TABLE IF NOT EXISTS public.formats
+(
+    id integer NOT NULL DEFAULT nextval('formats_id_seq'::regclass),
+    name character varying(255) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT formats_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.formats
+    OWNER to postgres;

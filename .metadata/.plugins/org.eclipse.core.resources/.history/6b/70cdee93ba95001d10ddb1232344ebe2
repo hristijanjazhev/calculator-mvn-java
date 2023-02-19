@@ -1,0 +1,31 @@
+package mk.com.iwec.e_library;
+
+public class Publisher {
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	private int id;
+	private String name;
+
+	// getters and setters
+
+	public void insert() {
+		// code to insert a new publisher into the database
+	}
+
+	public static Publisher findById(int id) {
+		// code to retrieve a publisher from the database by their id
+	}

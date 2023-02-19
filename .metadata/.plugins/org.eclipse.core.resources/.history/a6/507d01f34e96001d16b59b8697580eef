@@ -1,0 +1,18 @@
+package mk.com.iwec.elibrary;
+
+import java.sql.DriverManager;
+
+public class App {
+
+	public static void main(String[] args) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			String dbURL = "jdbc:postgresql://localhost:5432/e-library";
+			String username = "postges";
+			String password = "0110";
+			connection = DriverManager.getConnection(dbURL,username,password);
+		}catch(Exception ex) {
+			ex.getMessage();
+		}		
+	}
+}

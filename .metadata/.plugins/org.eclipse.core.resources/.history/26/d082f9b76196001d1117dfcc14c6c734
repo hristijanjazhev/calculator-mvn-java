@@ -1,0 +1,25 @@
+package mk.com.iwec.e_library;
+
+public class Issue_number {
+
+public int getId() {
+	return Id;
+}
+public void setId(int id) {
+	Id = id;
+}
+public int getIssue_number() {
+	return issue_number;
+}
+public void setIssue_number(int issue_number) {
+	this.issue_number = issue_number;
+}
+
+public Issue_number(int id, int issue_number) {
+	super();
+	Id = id;
+	this.issue_number = issue_number;
+}
+private int Id;
+private int issue_number;
+}

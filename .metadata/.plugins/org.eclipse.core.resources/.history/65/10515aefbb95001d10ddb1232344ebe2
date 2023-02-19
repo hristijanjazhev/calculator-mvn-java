@@ -1,0 +1,6 @@
+package mk.com.iwec.e_library;
+
+public class Isbn {
+private int Id;
+private char ISBN;
+}

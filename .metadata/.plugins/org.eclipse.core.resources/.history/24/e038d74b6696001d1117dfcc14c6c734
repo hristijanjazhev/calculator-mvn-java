@@ -1,0 +1,12 @@
+package mk.com.iwec.e_library.interfaces;
+
+import mk.com.iwec.e_library.Authors;
+import mk.com.iwec.e_library.Books;
+
+public interface IBook {
+	Books findById(int id);
+	void insertBook();
+	void update(Books book);
+	void delete(int id);
+	
+}

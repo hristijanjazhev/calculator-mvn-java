@@ -1,0 +1,27 @@
+package mk.com.iwec.elibrary;
+
+public class Authors {
+
+	public int getId() {
+		return Id;
+	}
+	public void setId(int id) {
+		Id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	private int Id;
+	public Authors(int id, String name) {
+		super();
+		Id = id;
+		this.name = name;
+	}
+	private String name;
+	public Authors() {
+		super();
+	}
+}

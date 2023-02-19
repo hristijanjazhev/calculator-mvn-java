@@ -1,0 +1,95 @@
+package mk.com.iwec.e_library.DAO;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import mk.com.iwec.e_library.Authors;
+import mk.com.iwec.e_library.interfaces.IAuthor;
+
+public class AuthorDAO implements IAuthor {
+	private Connection connection;
+
+	public AuthorDAO(Connection connection) {
+		this.connection = connection;
+	}
+
+	public void insert(Authors author) {
+		String sql = "INSERT INTO book"
+				+ "	id, title, author_id, publisher_id, year_of_release, isbn, cover, genre, issue_number)\r\n"
+				+ "	VALUES (2,'DesignPatterns' , 1, 1, '2019-07-13' ,'QWEQWDQSDT', 'Crna',1, 1);";
+		try {
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, author.getName());
+			statement.execute();
+		} catch (Exception ex) {
+			ex.getMessage();
+		}
+	}
+
+	public Authors getAuthor() {
+		String sql = "select * from authors where id = ?";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+			int id = 1;
+			statement.setInt(1,id);
+			
+			ResultSet resultSet = statement.executeQuery();
+			if (resultSet.next()) {
+				Authors author = new Authors();
+				author.setId(resultSet.getInt("id"));
+				author.setName(resultSet.getString("name"));
+				return author;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public void updateAuthor(Authors author) {
+		String sql = "UPDATE authors SET name = ? WHERE id = ?";
+		PreparedStatement statement;
+		try {
+			statement = connection.prepareStatement(sql);
+			statement.setInt(1, author.getId());
+			statement.setString(2, author.getName());
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.getMessage();
+		}
+	}
+
+
+	@Override
+	public void delete(int id) {
+
+	}
+
+	@Override
+	public Authors getAuthor(int id) {
+		return null;
+	}
+
+	@Override
+	public List<Authors> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertAuthor(Authors author) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAuthor(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+}

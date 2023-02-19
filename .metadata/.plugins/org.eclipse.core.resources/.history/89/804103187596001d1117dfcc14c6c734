@@ -1,0 +1,31 @@
+package mk.com.iwec.e_library;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Books tempBook = new Books();
+		BookDAO mainBook = new BookDAO();
+
+		// update book
+		tempBook.setTitle("Harry Potter and the Sorcerer's Stone");
+		mainBook.updateBook(tempBook);
+
+		// delete
+		mainBook.deleteBook(1);
+
+		// add new book
+		Books createBook = new Books(0, d, 0, null, d, 0, 0, d, 0, d);
+		mainBook.insertBook(createBook);
+
+		// get by id
+		Books retrievedBook = mainBook.findById(2);
+		System.out.println("retrieved book: " + retrievedBook);
+	}
+}

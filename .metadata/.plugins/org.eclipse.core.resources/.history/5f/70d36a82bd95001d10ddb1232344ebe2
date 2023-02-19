@@ -1,0 +1,7 @@
+package mk.com.iwec.e_library;
+
+public class Genre {
+	private int Id;
+	private String name;
+
+}
