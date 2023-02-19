@@ -6,6 +6,7 @@ In this project, I will demonstrate how I work with arguments passed by a user i
 ## Installation
 
 *For this project I'm using Apache Maven '3.9.0 version' and Java: '17'  version.
+When we finally locate the project folder in the 'CommandLine', feel free to start using these commands :
 
 ```bash
 mvn compile
