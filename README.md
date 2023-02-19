@@ -1,6 +1,6 @@
 ## Calculator Project
 
-This project is based on simple arithmetic operations for testing purposes.
+This project is based on simple arithmetic operations for personal purposes.
 In this project, I will demonstrate how I work with arguments passed by a user from the 'CommandLine' while executing the jar file, with the help of the maven.
 
 ## Installation
